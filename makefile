@@ -15,3 +15,8 @@ install-metrics:
 	cd yaml/monitor/metrics-server && \
 	kubectl apply -f deployment.yaml
 
+sample-node_port:
+	cd sample && \
+	kubectl apply -f node-port.yaml
+
+
