@@ -15,6 +15,6 @@ spec:
     - nodePort: 443
       protocol: TCP
       name: https
-      port: 80
+      port: 443
   selector:
     app: nginx
