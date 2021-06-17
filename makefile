@@ -11,6 +11,7 @@ install-dashboard:
 	chmod +x get_token.sh && \
 	sh get_token.sh
 
-
-
+install-metrics:
+	cd yaml/monitor/metrics-server && \
+	kubectl apply -f deployment.yaml
 
