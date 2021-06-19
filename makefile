@@ -16,7 +16,8 @@ install-metrics:
 	kubectl apply -f deployment.yaml
 
 install-rook:
-	cd yaml/rook/cluster/examples/kubernetes/ceph && \
+	cd yaml/rook && chmod +x pull_image.sh && sh pull_image.sh && \
+	cd cluster/examples/kubernetes/ceph && \
 	kubectl apply -f crds.yaml -f common.yaml -f operator.yaml && \
 	kubectl apply -f cluster.yaml
 
