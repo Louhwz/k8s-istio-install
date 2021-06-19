@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: multiple-headlesssvc
+spec:
+  selector:
+    name: busybox
+  clusterIP: None
+  ports:
+    - name: foo
+      port: 1234
+      targetPort: 1234
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mul-busybox1
+  labels:
+    name: busybox
+spec:
+  containers:
+    - image: busybox
+      command:
+        - sleep
+        - "3600"
+      name: busybox
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mul-busybox2
+  labels:
+    name: busybox
+spec:
+  containers:
+    - image: busybox
+      command:
+        - sleep
+        - "3600"
+      name: busybox
