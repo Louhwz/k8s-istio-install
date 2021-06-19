@@ -18,7 +18,7 @@ install-metrics:
 install-rook:
 	cd yaml/rook/cluster/examples/kubernetes/ceph && \
 	kubectl apply -f crds.yaml -f common.yaml -f operator.yaml && \
-	kubectl create -f cluster.yaml
+	kubectl apply -f cluster.yaml
 
 # for learning
 sample-node_port:
