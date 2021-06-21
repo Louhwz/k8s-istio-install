@@ -18,8 +18,6 @@ metadata:
   labels:
     name: busybox
 spec:
-  hostname: busybox-1
-  subdomain: custom-subdomain
   containers:
     - image: busybox
       command:

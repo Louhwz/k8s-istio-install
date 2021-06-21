@@ -34,12 +34,25 @@ install-rook: install-rook_pull-image
 .PHONY: install-rook_pull-image
 
 install-prometheus:
-	cd yaml/prometheus && \
+	cd yaml/monitor/prometheus && \
 	kubectl create namespace monitoring && \
 	kubectl apply -f clusterRole.yaml && \
 	kubectl apply -f config-map.yaml && \
 	kubectl apply -f prometheus-deployment.yaml && \
-	kubectl apply -f prometheus-service.yaml --namespace=monitoring
+	kubectl apply -f prometheus-service.yaml
+
+# once
+install-grafana:
+	cd yaml/monitor/grafana && \
+	kubectl apply -f grafana-datasource-config.yaml && \
+	kubectl apply -f deployment.yaml && \
+	kubectl apply -f service.yaml
+
+# master
+install-helm:
+	cd scripts && \
+	tar -zxvf helm-v3.6.1-linux-amd64.tar.gz -o /root/downloads/ && \
+	mv /root/downloads/linux-amd64/helm /usr/local/bin/helm
 
 # for learning
 sample-node_port:
