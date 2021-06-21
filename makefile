@@ -6,6 +6,7 @@ init-slave:
 	cd scripts && chmod +x install.sh && ./install.sh
 .PHONY: init-slave
 
+# once
 install-dashboard:
 	cd yaml/dashboard && \
 	kubectl apply -f recommended.yaml && \
@@ -14,20 +15,31 @@ install-dashboard:
 	sh get_token.sh
 .PHONY: install-dashboard
 
+# once
 install-metrics:
 	cd yaml/monitor/metrics-server && \
 	kubectl apply -f deployment.yaml
 .PHONY: install-metrics
 
+# once
 install-rook_pull-image:
 	cd yaml/rook && chmod +x pull_image.sh && sh pull_image.sh
 .PHONY: install-rook_pull-image
 
+# once
 install-rook: install-rook_pull-image
 	cd yaml/rook/cluster/examples/kubernetes/ceph && \
 	kubectl apply -f crds.yaml -f common.yaml -f operator.yaml && \
 	kubectl apply -f cluster.yaml
 .PHONY: install-rook_pull-image
+
+install-prometheus:
+	cd yaml/prometheus && \
+	kubectl create namespace monitoring && \
+	kubectl apply -f clusterRole.yaml && \
+	kubectl apply -f config-map.yaml && \
+	kubectl apply -f prometheus-deployment.yaml && \
+	kubectl apply -f prometheus-service.yaml --namespace=monitoring
 
 # for learning
 sample-node_port:
