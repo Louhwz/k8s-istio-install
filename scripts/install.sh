@@ -1,10 +1,6 @@
 # for centos
 set -e
 
-install::tool() {
-  yum install -y git
-}
-
 install::docker() {
   # install docker
   yum install -y yum-utils
@@ -83,7 +79,6 @@ purify::master() {
 }
 
 main() {
-  install::tool
   install::docker
   install::k8s
   pull_image

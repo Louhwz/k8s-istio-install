@@ -1,0 +1,40 @@
+#创建pvc
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rbd-demo-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: rook-ceph-block
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csirbd-demo-pod
+  labels:
+    test-cephrbd: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      test-cephrbd: "true"
+  template:
+    metadata:
+      labels:
+        test-cephrbd: "true"
+    spec:
+      containers:
+        - name: web-server-rbd
+          image: nginx:1.18.0
+          volumeMounts:
+            - name: mypvc
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: mypvc
+          persistentVolumeClaim:
+            claimName: rbd-demo-pvc
+            readOnly: false
