@@ -54,9 +54,7 @@ install-helm:
 	tar -zxvf helm-v3.6.1-linux-amd64.tar.gz -o /root/downloads/ && \
 	mv /root/downloads/linux-amd64/helm /usr/local/bin/helm
 
-# for learning
-sample-node_port:
-	cd sample && \
-	kubectl apply -f node-port.yaml
-
-
+# once
+install-kube_state_metrics_configs:
+	cd yaml/monitor/ && \
+	kubectl apply -f kube-state-metrics-configs/
