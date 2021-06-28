@@ -157,3 +157,7 @@ data:
         - source_labels: [__meta_kubernetes_service_name]
           action: replace
           target_label: kubernetes_name
+
+      - job_name: 'prometheus-golang-demo'
+        static_configs:
+          - targets: ['four-type-svc.default.svc.cluster.local:80']

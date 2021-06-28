@@ -4,3 +4,8 @@ kubeadm token create --print-join-command --ttl=0
 # rook dashboard 登录密码
 kubectl get secrets -n rook-ceph rook-ceph-dashboard-password -o jsonpath='{.data.password}' | base64 -d
 
+# 从apiServer请求数据
+kubectl get --raw "/apis/metrics.k8s.io/v1beta1/nodes"
+
+# 创建hpa
+kubectl autoscale deployment nginx-deployment --cpu-percent=20 --min=1 --max=10 -n default

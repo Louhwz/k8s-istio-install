@@ -55,6 +55,17 @@ install-helm:
 	mv /root/downloads/linux-amd64/helm /usr/local/bin/helm
 
 # once
+install-weave_scope:
+	cd scripts && \
+	chmod +x install-weave_scope.sh && \
+	sh install-weave_scope.sh install
+
+uninstall-weave_scope:
+	cd scripts && \
+	chmod +x install-weave_scope.sh && \
+	sh install-weave_scope.sh uninstall
+
+# once
 install-kube_state_metrics_configs:
 	cd yaml/monitor/ && \
 	kubectl apply -f kube-state-metrics-configs/
