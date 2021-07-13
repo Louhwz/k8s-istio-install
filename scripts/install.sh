@@ -61,7 +61,7 @@ pull_image() {
 
 kubeadm_init() {
   LogName="kubeadm_init.txt"
-  kubeadm init | tee $LogName
+  kubeadm init --kubernetes-version=v1.21.1 | tee $LogName
 }
 
 mv_config() {
@@ -88,9 +88,9 @@ main() {
   then
     kubeadm_init
     mv_config
-    install:weave
     purify::master
   fi
+
 }
 
-main "$@"
+"$@"

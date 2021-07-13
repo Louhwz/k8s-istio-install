@@ -1,5 +1,5 @@
 init-master:
-	cd scripts && chmod +x install.sh && ./install.sh master
+	cd scripts && chmod +x install.sh && ./install.sh main master
 .PHONY: init-master
 
 init-slave:
@@ -64,6 +64,15 @@ uninstall-weave_scope:
 	cd scripts && \
 	chmod +x install-weave_scope.sh && \
 	sh install-weave_scope.sh uninstall
+
+cleanup-bookinfo:
+	chmod +x yaml/mesh/samples/bookinfo/platform/kube/cleanup.sh && \
+	sh yaml/mesh/samples/bookinfo/platform/kube/cleanup.sh
+
+install-krew:
+	cd scripts && \
+	chmod +x install_krew.sh && \
+	sh install_krew.sh
 
 # once
 install-kube_state_metrics_configs:
