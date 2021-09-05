@@ -26,7 +26,9 @@ EOF
   yum -y install epel-release
   yum clean all
   yum makecache
-  yum -y install kubelet kubeadm kubectl
+  yum install -y kubelet-1.21.0-0
+  yum install -y kubectl-1.21.0-0
+  yum install -y kubeadm-1.21.2-0
 }
 
 pull_image() {
