@@ -15,6 +15,7 @@ install-dashboard:
 	sh get_token.sh
 .PHONY: install-dashboard
 
+
 # once
 install-metrics:
 	cd yaml/monitor/metrics-server && \
