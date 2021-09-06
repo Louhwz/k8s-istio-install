@@ -6,6 +6,11 @@ init-slave:
 	cd scripts && chmod +x install.sh && ./install.sh
 .PHONY: init-slave
 
+# once master
+install-weave:
+	cd scripts && chmod +x install.sh && ./install.sh install::weave
+.PHONY: install-weave
+
 # once
 install-dashboard:
 	cd yaml/dashboard && \
