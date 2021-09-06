@@ -52,8 +52,8 @@ install-grafana:
 # master
 install-helm:
 	cd scripts && \
-	tar -zxvf helm-v3.6.1-linux-amd64.tar.gz -o /root/downloads/ && \
-	mv /root/downloads/linux-amd64/helm /usr/local/bin/helm
+	tar -zxvf helm-v3.6.1-linux-amd64.tar.gz -C /tmp && \
+	mv /tmp/linux-amd64/helm /usr/local/bin/helm
 
 # once
 install-weave_scope:
