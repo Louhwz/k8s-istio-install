@@ -73,13 +73,14 @@ mv_config() {
   sudo chown $(id -u):$(id -g) $HOME/.kube/config
 }
 
+install::weave() {
+  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')&env.IPALLOC_RANGE=20.0.0.0/16"
+}
+
 purify::master() {
   kubectl taint nodes --all node-role.kubernetes.io/master-
 }
 
-install::weave() {
-  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')&env.IPALLOC_RANGE=192.168.0.0/16"
-}
 main() {
   install::docker
   install::k8s
