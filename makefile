@@ -84,3 +84,11 @@ install-krew:
 install-kube_state_metrics_configs:
 	cd yaml/monitor/ && \
 	kubectl apply -f kube-state-metrics-configs/
+
+install-metrics-server:
+	cd yaml/monitor/metrics-server && \
+	kubectl apply -f deployment.yaml
+
+
+# https://devopscube.com/node-exporter-kubernetes/
+install-node-exporter:
