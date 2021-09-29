@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: workloadentry-test
+spec:
+  hosts:
+  - workloadentry.test.com
+  location: MESH_INTERNAL
+  ports:
+  - number: 80
+    name: http
+    protocol: HTTP
+    targetPort: 80
+  resolution: STATIC
+  workloadSelector:
+    labels:
+      app: workloadentry-test

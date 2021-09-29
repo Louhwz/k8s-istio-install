@@ -3,7 +3,7 @@ init-master:
 .PHONY: init-master
 
 init-slave:
-	cd scripts && chmod +x install.sh && ./install.sh
+	cd scripts && chmod +x install.sh && ./install.sh main
 .PHONY: init-slave
 
 # once master

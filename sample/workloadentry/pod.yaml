@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: workloadentry-test-01
+  namespace: envoy-test
+spec:
+  containers:
+  - name: workloadentry-test
+    image: louhwz/http_server_print_env:0.1
+    imagePullPolicy: IfNotPresent
+    env:
+    - name: printwhat
+      value: "影魔"
+    ports:
+    - containerPort: 80
+  restartPolicy: Always
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: workloadentry-test-02
+  namespace: envoy-test
+spec:
+  containers:
+  - name: workloadentry-test
+    image: louhwz/http_server_print_env:0.1
+    imagePullPolicy: IfNotPresent
+    env:
+    - name: printwhat
+      value: "剑圣"
+    ports:
+    - containerPort: 80
+  restartPolicy: Always
