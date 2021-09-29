@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: workloadentry-test
+  namespace: envoy-test
+spec:
+  hosts:
+  - serviceentry.test.com
+  location: MESH_INTERNAL
+  ports:
+  - number: 80
+    name: http
+    protocol: HTTP
+    targetPort: 80
+  resolution: STATIC
+  endpoints:
+  - address: 20.0.128.12
+    weight: 100
+  - address: 20.0.224.6
+    weight: 1000
+
