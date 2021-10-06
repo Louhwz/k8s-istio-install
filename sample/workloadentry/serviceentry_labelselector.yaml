@@ -1,15 +1,37 @@
 apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: labelselector
+  namespace: envoy-test
+spec:
+  hosts:
+  - labelselector.test.com
+  location: MESH_INTERNAL
+  ports:
+  - number: 80
+    name: http
+    protocol: HTTP
+    targetPort: 80
+  resolution: STATIC
+  workloadSelector:
+    labels:
+      app: workloadentry-test
+---
+apiVersion: networking.istio.io/v1alpha3
 kind: WorkloadEntry
 metadata:
   name: workloadentry-test-01
+  namespace: envoy-test
+  labels:
+    app: workloadentry-test
 spec:
   # use of the service account indicates that the workload has a
   # sidecar proxy bootstrapped with this service account. Pods with
   # sidecars will automatically communicate with the workload using
   # istio mutual TLS.
-  serviceAccount: details-legacy
-  address: 2.2.2.2
-  weight: 10
+  serviceAccount: default
+  address: 10.36.0.1
+  weight: 100
   labels:
     app: workloadentry-test
 ---
@@ -17,13 +39,17 @@ apiVersion: networking.istio.io/v1alpha3
 kind: WorkloadEntry
 metadata:
   name: workloadentry-test-02
+  namespace: envoy-test
+  labels:
+    app: workloadentry-test
 spec:
   # use of the service account indicates that the workload has a
   # sidecar proxy bootstrapped with this service account. Pods with
   # sidecars will automatically communicate with the workload using
   # istio mutual TLS.
-  serviceAccount: details-legacy
-  address: 2.2.2.2
-  weight: 1
+  serviceAccount: default
+  address: 10.47.0.11
+  weight: 1000
   labels:
     app: workloadentry-test
+

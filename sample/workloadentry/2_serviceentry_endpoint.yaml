@@ -1,11 +1,11 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: ServiceEntry
 metadata:
-  name: workloadentry-test
-  namespace: envoy-test
+  name: prinenv
+  namespace: istio-test
 spec:
   hosts:
-  - serviceentry.test.com
+  - printenv
   location: MESH_INTERNAL
   ports:
   - number: 80
@@ -14,8 +14,8 @@ spec:
     targetPort: 80
   resolution: STATIC
   endpoints:
-  - address: 20.0.128.12
+  - address: 10.36.0.7
     weight: 100
-  - address: 20.0.224.6
-    weight: 1000
+  - address: 10.36.0.6
+    weight: 10000
 ---

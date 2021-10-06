@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: workloadentry-test-01
-  namespace: envoy-test
+  name: printenv-01
+  namespace: istio-test
   labels:
-    app: workloadentry
+    app: printenv
 spec:
   containers:
   - name: workloadentry-test
@@ -20,10 +20,10 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: workloadentry-test-02
-  namespace: envoy-test
-    labels:
-      app: workloadentry
+  name: printenv-02
+  namespace: istio-test
+  labels:
+    app: printenv
 spec:
   containers:
   - name: workloadentry-test
