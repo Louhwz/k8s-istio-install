@@ -74,7 +74,7 @@ mv_config() {
 }
 
 install::weave() {
-  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')&env.IPALLOC_RANGE=20.0.0.0/16"
+  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')&env.IPALLOC_RANGE=10.0.0.0/8"
 }
 
 purify::master() {
