@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: external-address
+  namespace: istio-test
+spec:
+  addresses:
+  - 198.51.100.0
+  hosts:
+  - address.internal
+  ports:
+  - name: http
+    number: 80
+    protocol: HTTP
