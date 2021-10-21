@@ -14,8 +14,8 @@ spec:
     targetPort: 80
   resolution: STATIC
   endpoints:
-  - address: 10.36.0.7
-    weight: 100
-  - address: 10.36.0.6
-    weight: 10000
+    - address: 10.36.0.7
+      weight: 100
+    - address: 10.36.0.6
+      weight: 10000
 ---

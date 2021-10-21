@@ -2,10 +2,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  nettools
-  namespace: istio-test
+  name: nettools
   labels:
-    app:  nettools
+    app: nettools
 spec:
   selector:
     matchLabels:
@@ -19,29 +18,30 @@ spec:
   template:
     metadata:
       labels:
-        app:  nettools
+        app: nettools
     spec:
       # initContainers:
-        # Init containers are exactly like regular containers, except:
-          # - Init containers always run to completion.
-          # - Each init container must complete successfully before the next one starts.
+      # Init containers are exactly like regular containers, except:
+      # - Init containers always run to completion.
+      # - Each init container must complete successfully before the next one starts.
       containers:
-      - name:  nettools
-        image:  louhwz/nettools:0.0.1
-        imagePullPolicy: IfNotPresent
-        resources:
-          requests:
-            cpu: 10m
-            memory: 10Mi
-          limits:
-            cpu: 100m
-            memory: 100Mi
-        volumeMounts:
-        - name: localtime
-          mountPath: /etc/localtime
+        - name: nettools
+          image: louhwz/nettools:0.0.1
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
+          volumeMounts:
+            - name: localtime
+              mountPath: /etc/localtime
       volumes:
         - name: localtime
           hostPath:
             path: /usr/share/zoneinfo/Asia/Shanghai
       restartPolicy: Always
 ---
+
