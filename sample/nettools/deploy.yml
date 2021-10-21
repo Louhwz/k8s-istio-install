@@ -19,6 +19,8 @@ spec:
     metadata:
       labels:
         app: nettools
+      annotations:
+        sidecar.istio.io/extraStatTags: kubernetes_node_name
     spec:
       # initContainers:
       # Init containers are exactly like regular containers, except:
