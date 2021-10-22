@@ -6,6 +6,23 @@ init-slave:
 	cd scripts && chmod +x install.sh && ./install.sh main
 .PHONY: init-slave
 
+# run after kubeadm reset
+reset:
+	rm -rf /etc/cni/net.d
+	rm -rf $HOME/.kube/config
+	iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
+
+install-istio:
+	cd scripts && chmod +x install_istio.sh && ./install_istio.sh
+
+install-bookinfo:
+	kubectl label namespace default istio-injection=enabled --overwrite
+	kubectl apply -f yaml/istio-1.10.5-linux-amd64/istio-1.10.5/samples/bookinfo/platform/kube/bookinfo.yaml
+
+verify-bookinfo:
+	kubectl exec "$(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}')" -c ratings -- curl -sS productpage:9080/productpage | grep -o "<title>.*</title>"
+
+
 # once master
 install-weave:
 	cd scripts && chmod +x install.sh && ./install.sh install::weave
